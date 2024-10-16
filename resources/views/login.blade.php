@@ -49,7 +49,7 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-12 text-center">
-                            <button type="submit" class="btn" id="loginbutton" value="login" name="action" style="background-color: #d9db26; width: 30%; border-radius: 15px;"> 
+                            <button type="submit" class="btn loginBoton"  value="login" name="action" style="background-color: #d9db26; width: 30%; border-radius: 15px;"> 
                                 <h5>Ingresar</h5>
                             </button>
                         </div>
@@ -66,4 +66,17 @@
             </div>
         </form>
     </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        $('.loginBoton').click(function() {
+            $(this).html(`
+                <div class="spinner-border text-dark" role="status">
+                <span class="visually-hidden">Loading...</span>
+                </div>
+            `);
+
+        });
+    </script>
 @endsection

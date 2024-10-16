@@ -4,11 +4,45 @@
 @section('title', "SportGO - Inicio")
 
 @section('main')
-    @if(session('success'))
-        <h2 style="text-align: center;">{{ session('success') }}</h2>
-    @elseif(session('email_verification_message'))
-        <h2 style="text-align: center;">{{ session('email_verification_message') }}</h2>
-    @endif
+
+        <!-- Mostrar mensajes flash -->
+        @if (session('loginExito'))
+            <div class="alert alert-success alert-dismissible fade show text-center mt-2" role="alert">
+                <strong>¡Hola, {{ session('user')->nombres }}!</strong> {{ session('loginExito') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @elseif (session('productoAgregado'))
+            <div class="alert alert-success alert-dismissible fade show text-center mt-2" role="alert">
+                <strong>Producto agregado al carrito</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @elseif (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show text-center mt-2" role="alert">
+                <strong>Error:</strong> {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @elseif (session('warning'))
+            <div class="alert alert-warning alert-dismissible fade show text-center mt-2" role="alert">
+                <strong>Advertencia:</strong> {{ session('warning') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @elseif(session('email_verification_message'))
+            <h2 style="text-align: center;">{{ session('email_verification_message') }}</h2>
+        @endif
+
+        <!-- Mostrar errores de validación -->
+        @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show text-center mt-2" role="alert">
+                <strong>¡Ups!</strong> Hay algunos problemas con el formulario:
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
 
     <h1 class="mt-3 text-center">Listado de productos publicados</h1>
     @if($productos->isEmpty())

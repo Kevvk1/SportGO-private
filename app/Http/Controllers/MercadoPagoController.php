@@ -108,7 +108,12 @@ class MercadoPagoController extends Controller
     }
 
     public function success(){
+        $carrito = session('carrito', []);
+
+        $carrito = session()->forget('carrito');
+
         session()->flash('success', 'OK');
+        
         return view('finished');
     }
 
@@ -118,7 +123,12 @@ class MercadoPagoController extends Controller
     }
 
     public function pending(){
+        $carrito = session('carrito', []);
+
+        $carrito = session()->forget('carrito');
+
         session()->flash('pending', 'NO');
+        
         return view('finished');
     }
 }

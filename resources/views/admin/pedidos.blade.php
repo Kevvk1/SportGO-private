@@ -57,7 +57,7 @@
                                 @csrf
                                 <!-- Campo oculto para código del producto -->
                                 <input type="hidden" name="id_pedido" value="{{ $pedido->id_pedido }}">
-                                <button type="submit" class="btn" style="border-radius: 10px; background-color: lightcoral;">
+                                <button type="submit" class="btn eliminarBoton" style="border-radius: 10px; background-color: lightcoral;">
 
                                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
@@ -89,7 +89,23 @@
         </div>
     </div>
 
-    <script src="{{ asset('js/admin.pedidos.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="{{ asset('js/admin.pedidos.js') }}"></script>
+
+        
+    <script>
+        $(document).ready(function(){
+
+            $('.eliminarBoton').click(function() {
+                $(this).html(`
+                    <div class="spinner-border text-dark" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                `);
+
+            });
+
+        });
+    </script>
     @endif
 @endsection

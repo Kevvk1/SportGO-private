@@ -80,6 +80,8 @@ class ProductController extends Controller
             'codigo_producto' => ['required', 'numeric', 'unique:productos', 'max:255'],
         ]);
 
+        
+
 
 
         $producto = Productos::create([
@@ -92,7 +94,7 @@ class ProductController extends Controller
 
         $producto->save();
 
-        return redirect()->route('admin.cargar')->withSuccess("Producto cargado exitosamente");
+        return redirect()->route('admin.cargar')->withSuccess("Producto cargado correctamente");
     }
 
 
@@ -176,7 +178,7 @@ class ProductController extends Controller
 
         session()->put('carrito', $carrito);
 
-        return redirect()->back()->with('success', 'Producto agregado al carrito');
+        return redirect()->back()->with('productoAgregado', 'Producto agregado al carrito');
     }
 
 

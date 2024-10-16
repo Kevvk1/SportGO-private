@@ -3,15 +3,38 @@
 @section('title', 'SportGO - Listado de productos publicados')
 
 @section('main')
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+
+    <!-- Mostrar mensajes flash -->
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show text-center mt-2" role="alert">
+            <strong>¡Éxito!</strong> {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @elseif (session('error'))
+        <div class="alert alert-danger alert-dismissible fade show text-center mt-2" role="alert">
+            <strong>Error:</strong> {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @elseif (session('warning'))
+        <div class="alert alert-warning alert-dismissible fade show text-center mt-2" role="alert">
+            <strong>Advertencia:</strong> {{ session('warning') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    <!-- Mostrar errores de validación -->
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show text-center mt-2" role="alert">
+            <strong>¡Ups!</strong> Hay algunos problemas con el formulario:
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <h1 class="mt-3 text-center">Listado de productos publicados</h1>
     @if($productos->isEmpty())
         <div class="container-fluid text-center mt-5">
@@ -67,7 +90,7 @@
                             @csrf
                             <!-- Campo oculto para código del producto -->
                             <input type="hidden" name="codigo_producto" value="{{ $producto->codigo_producto }}">
-                            <button type="submit" class="btn" style="border-radius: 10px; background-color: lightcoral;">
+                            <button type="submit" class="btn eliminarBoton" style="border-radius: 10px; background-color: lightcoral;">
 
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
@@ -152,8 +175,19 @@
         </div>
     </div>
 
-    <script src="{{ asset('js/admin.listado.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="{{ asset('js/admin.listado.js') }}"></script>
+
+        
+    <script>
+        $('.eliminarBoton').click(function() {
+            $(this).html(`
+                <div class="spinner-border text-dark" role="status">
+                <span class="visually-hidden">Loading...</span>
+                </div>
+            `);
+        });
+    </script>
 
     @endif
 @endsection

@@ -76,7 +76,7 @@
 
                     <div class="row">
                         <div class="col-12 my-5 text-center">
-                            <button type="submit" class="btn p-2" id="loginbutton" value="register" name="action" style="background-color: #d9db26;"> 
+                            <button type="submit" class="btn p-2 registrarseBoton" value="register" name="action" style="background-color: #d9db26;"> 
                                 <h5>Registrarme</h5>
                             </button>
                         </div>
@@ -86,6 +86,19 @@
         </form>
 
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        $('.registrarseBoton').click(function() {
+            $(this).html(`
+                <div class="spinner-border text-dark" role="status">
+                <span class="visually-hidden">Loading...</span>
+                </div>
+            `);
+
+        });
+    </script>
 
     
 @endsection

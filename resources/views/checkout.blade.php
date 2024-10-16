@@ -5,6 +5,13 @@
 @section('main')
 
     <div class="container-fluid">
+
+
+        <div class="progress-stacked my-3">
+            <div class="progress" role="progressbar" aria-label="Segment one" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                <div class="progress-bar bg-warning text-dark">¿A dónde lo enviamos?</div>
+            </div>
+        </div>
         
         @if(session('success'))
            <h2 style="text-align: center;">{{ session('success') }}</h2>
@@ -44,12 +51,12 @@
                         </div>
 
                         <div class="row mb-3">
-                            <div class="col-6">
-                                <input type="text" class="form-control" id="provincia" name="provincia" aria-describedby="provincia" placeholder="Provincia">
-                            </div>
-
                             <div class="col-6">                  
                                 <input type="text" class="form-control" id="localidad" name="localidad" aria-describedby="provincia" placeholder="Localidad">
+                            </div>
+
+                            <div class="col-6">
+                                <input type="text" class="form-control" id="provincia" name="provincia" aria-describedby="provincia" placeholder="Provincia">
                             </div>
                         </div>
 
@@ -123,7 +130,7 @@
                             <div class="col-12">
                                 <div class="container-fluid">
                                     @if($carrito)
-                                    <button class="btn p-2 mt-5" style="background-color: #d9db26; width:100%" onclick="location.href='checkout/pago'">
+                                    <button class="btn p-2 mt-5 continuarBoton" style="background-color: #d9db26; width:100%">
                                         <span>Continuar</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
@@ -140,4 +147,26 @@
             </form>
         </div>
     </div>
+    
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    
+    <script>
+        $(document).ready(function(){
+
+            $('.continuarBoton').click(function() {
+                $(this).html(`
+                    <div class="spinner-border text-dark" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                    </div>
+                `);
+
+                window.location.href='checkout/pago';
+            });
+
+        });
+    </script>
+
 @endsection

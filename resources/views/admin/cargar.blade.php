@@ -4,6 +4,38 @@
 
 @section('main')
 
+        <!-- Mostrar mensajes flash -->
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show text-center mt-2" role="alert">
+                <strong>¡Éxito!</strong> {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @elseif (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show text-center mt-2" role="alert">
+                <strong>Error:</strong> {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @elseif (session('warning'))
+            <div class="alert alert-warning alert-dismissible fade show text-center mt-2" role="alert">
+                <strong>Advertencia:</strong> {{ session('warning') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        <!-- Mostrar errores de validación -->
+        @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show text-center mt-2" role="alert">
+                <strong>¡Ups!</strong> Hay algunos problemas con el formulario:
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        
     <div class="container">
 
         <form class="form-carga" method="POST" action="{{ route('producto.cargar') }}" enctype="multipart/form-data">
@@ -51,7 +83,7 @@
 
                     <div class="row text-center">
                         <div class="col-12 p-2">
-                            <button type="submit" class="btn btn-warning" id="loginbutton" value="cargar" name="action" style="background-color: #d9db26; border-radius: 15px;"> 
+                            <button type="submit" class="btn btn-warning cargarBoton" value="cargar" name="action" style="background-color: #d9db26; border-radius: 15px;"> 
                                 <h5 class="mt-1">Cargar</h5>
                             </button>
                         </div>
@@ -62,5 +94,16 @@
 
     </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        $('.cargarBoton').click(function() {
+            $(this).html(`
+                <div class="spinner-border text-dark" role="status">
+                <span class="visually-hidden">Loading...</span>
+                </div>
+            `);
+        });
+    </script>
     
 @endsection

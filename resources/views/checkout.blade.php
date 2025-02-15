@@ -79,11 +79,11 @@
                         </div>
                     </div>
 
-                    <div class="col-4 offset-1 mt-2">
+                    <div class="col-4 offset-1 mt-2" style="border:1px solid gray ; border-radius: 15px;">
                         <div class="row">
                             <div class="col-12">
                                 <div class="container-fluid mb-3">
-                                    <span class="fs-4 ms-2">Detalles de compra</span>
+                                    <h5 class="ms-2 mt-2">Detalles de compra</h5>
                                 </div>
                             </div>
                         </div>
@@ -94,52 +94,37 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="row">
-                                            <div class="col-12">
+                                            <div class="col-12 ms-2">
                                                 <p>{{ $producto['nombre'] }}</p>
+                                                <p id="cantidad">Cantidad: {{ $producto['cantidad'] }}</p>
                                             </div>      
                                         </div>
-                                        <div class="row">
-                                            <div class="col-12">                                 
-                                                <div class="container-fluid" style="display: flex;">                                                       
-                                                    <div class="row">                                            
-                                                        <div class="col-6">                         
-                                                            <p id="cantidad">Cantidad: {{ $producto['cantidad'] }}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
-                                    <div class="col-3 align-self-center">
+                                    <div class="col-6 align-self-center">
                                         <h3>${{ $producto['precio_total'] }}</h3>
                                     </div>
                                 </div>
                             @endforeach
                         
                         
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="container-fluid d-flex">
-                                    <h5 class="mt-2">Total a pagar: ${{ $carrito["carrito"]["total_a_pagar"] }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                        @endif
-         
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="container-fluid">
-                                    @if($carrito)
-                                    <button class="btn p-2 mt-5 continuarBoton" style="background-color: #d9db26; width:100%">
-                                        <span>Continuar</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
-                                        </svg>
-                                    </button>
-                                    @else
-                                    <h5>¡Tu carrito está vacio!</h5>
-                                    @endif
-                                </div>
+                            <hr class="border border-secondary mt-0">
+                            <h5 class="ms-2 mt-2">Total a pagar: ${{ $carrito["carrito"]["total_a_pagar"] }}</h5>
+                        @endif      
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="container-fluid">
+                                @if($carrito)
+                                <button class="btn p-2 mt-5 continuarBoton" style="background-color: #d9db26; width:100%">
+                                    <span>Continuar</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+                                    </svg>
+                                </button>
+                                @else
+                                <h5>¡Tu carrito está vacio!</h5>
+                                @endif
                             </div>
                         </div>
                     </div>

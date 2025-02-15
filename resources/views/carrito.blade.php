@@ -5,8 +5,8 @@
 @section('main')
 <div class="container">
 
-    <div class="container mt-4" style="border: 1px solid gray; border-radius: 25px;">
-        <h4 style="padding: .3em;">Carrito</h4>
+    <div class="container mt-4">
+        <h4 class="text-center" style="padding: .3em;">Carrito</h4>
     </div>
 
     <div class="container-fluid">
@@ -26,71 +26,46 @@
 
                                     <div class="row">
                                         <div class="col-12">
-                                            <h3>{{ $producto['nombre'] }}</h3>
+                                            <h4>{{ $producto['nombre'] }}</h4>
+                                            <p class="d-flex">Cantidad: {{ $producto['cantidad'] }}</p>                      
                                         </div>      
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-12">                                 
-                                            <div class="container-fluid" style="display: flex;">                                                       
-                                                <div class="row">                                            
-
-                                                    <div class="col-6 d-flex">   
-                                                        <h5>Cantidad:</h5>                      
-                                                        <p id="cantidad" class="ms-2">{{ $producto['cantidad'] }}</p>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
 
 
                                 <div class="col-3 align-self-center">
-                                    <h3>${{ $producto['precio_unitario'] }}</h3>
+                                    <h4>${{ $producto['precio_unitario'] }}</h4>
                                 </div>
                             </div>
                             @endforeach
                     @endif
-
-
                 </div>
             </div> 
             <div class="col-4 mt-1">
                 <div class="mt-4" style="border:1px solid gray ; border-radius: 15px;">
-                    <h5 class="mt-2">Resumen de compra</h5>
+                    <h5 class="ms-2 mt-2">Resumen de compra</h5>
                     <hr class="border border-secondary mt-0">
                     @if(!$carrito)
-                        <p>Aqui veras los importes de tu compra una vez que agregues productos</p>
+                        <p class="ms-2">Aqui veras los importes de tu compra una vez que agregues productos</p>
                     @else
                         @foreach($carrito["carrito"]["productos"] as $producto)
                             <div class="row">
                                 <div class="col-6">
                                     <div class="row">
-                                        <div class="col-12">
+                                        <div class="col-12 ms-2">
                                             <p>{{ $producto['nombre'] }}</p>
+                                            <p id="cantidad">Cantidad: {{ $producto['cantidad'] }}</p>
                                         </div>      
                                     </div>
-                                    <div class="row">
-                                        <div class="col-12">                                 
-                                            <div class="container-fluid" style="display: flex;">                                                       
-                                                <div class="row">                                            
-                                                    <div class="col-6">                         
-                                                        <p id="cantidad">Cantidad: {{ $producto['cantidad'] }}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
-                                <div class="col-3 align-self-center">
+                                <div class="col-6 align-self-center">
                                     <h3>${{ $producto['precio_total'] }}</h3>
                                 </div>
                             </div>
                         @endforeach
                         <hr class="border border-secondary mt-0">
-                        <h5 class="mt-2">Total a pagar: ${{ $carrito["carrito"]["total_a_pagar"] }}</h5>
+                        <h5 class="ms-2 mt-2">Total a pagar: ${{ $carrito["carrito"]["total_a_pagar"] }}</h5>
                     @endif
                 </div>
             </div>

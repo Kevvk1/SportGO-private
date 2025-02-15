@@ -67,7 +67,7 @@
                 <a class="" style="color: lightgray;" href="https://sportgo.com">SportGO.com</a>
             </div>
             <div class="col-6">
-                <span style="color: lightgray;">Nombre</span>
+                <span style="color: lightgray;">Kevin Castellano</span>
             </div>
         </div>
     </div>

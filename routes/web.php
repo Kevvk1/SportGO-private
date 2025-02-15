@@ -103,6 +103,8 @@ Route::post('/admin/pedidos/entregar', [PedidosController::class, 'entregar'])->
 
 Route::get('/getProductosPedido/{id_pedido}', [PedidosController::class, 'getProductosPedido'])->name('pedido.obtener.productos');
 
+Route::get('/perfil', [UserControl::class, 'getProfile'])->name('perfil.user');
+
 
 
 

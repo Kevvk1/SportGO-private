@@ -13,25 +13,47 @@
                         <button class="btn btn-light" type="submit">Buscar</button> 
                     </form>
                 </div>
-                <div class="col-2 offset-1">
+                <div class="col-2 offset-1 d-flex align-items-center justify-content-around">
                     <div class="row d-flex align-items-center">
-                        <div class="col-3">
 
-                            <span class="badge rounded-pill bg-danger">{{ session('carrito') ? count(session('carrito')["carrito"]["productos"]) : 0 }}</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16" style="color:white; cursor: pointer;" onclick="location.href='/carrito'">
+<!--                         <div class="col-3 d-flex justify-content-center position-relative">
+                            <span class="badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle"
+                                style="font-size: 0.9rem; padding: 0.35em 0.7em; transform: translate(30%, -40%);">
+                                {{ session('carrito') ? count(session('carrito')["carrito"]["productos"]) : 0 }}
+                            </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="125" height="35" fill="currentColor"
+                                class="bi bi-cart" viewBox="0 0 16 16" 
+                                style="color:white; cursor: pointer; transform: scale(1.2); z-index: 10;" 
+                                onclick="location.href='/carrito'">
                                 <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
                             </svg>
+                        </div> --> <!--ICONO CARRITO COMPRAS CON BADGE ROJO ARRIBA -->
 
-                        </div>
-                        <div class="col-6 d-flex align-items-center" style="display: flex; justify-content: center;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16" style="color: white; cursor: pointer;" onclick="location.href='/login'">
-                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                        <div class="col-3 d-flex justify-content-center align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="200" height="100" fill="currentColor"
+                                class="bi bi-cart" viewBox="0 0 16 16" 
+                                style="color:white; cursor: pointer;" onclick="location.href='/carrito'">
+                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
                             </svg>
+                            <span class="ms-2" style="color: white; font-weight: bold; font-size: 16px;">
+                                {{ session('carrito') ? count(session('carrito')["carrito"]["productos"]) : 0 }}
+                            </span>
+                        </div>
+
+                        <div class="col-6 d-flex align-items-center" style="display: flex; justify-content: center;">
                             @if(session('user'))
+                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16" style="color: white; cursor: pointer;" onclick="location.href='/perfil'">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                                </svg>
                                 <div class="d-flex justify-content-center mt-3 ms-3">
                                     <p class="" style="color: white;">{{session('user')->nombres}} {{session('user')->apellidos}}</p>  
                                 </div>
+                            @else
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16" style="color: white; cursor: pointer;" onclick="location.href='/login'">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                            </svg>
                             @endif
                         </div>  
                         @if(session('user'))
